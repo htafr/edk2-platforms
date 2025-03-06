@@ -50,7 +50,7 @@ PublishPeiMemory (
   // configuration or the memory sizing code.
   //
   MemoryBase = 0x80000000UL + 0x1000000UL;
-  MemorySize = 0x40000000UL - 0x1000000UL; // 1GB - 16MB
+  MemorySize = 0x8000000UL - 0x1000000UL; // 128MB - 16MB
 
   DEBUG ((DEBUG_INFO, "%a: MemoryBase:0x%x MemorySize:%x\n", __func__, MemoryBase, MemorySize));
 
@@ -76,5 +76,5 @@ InitializeRamRegions (
   // TODO: This value should come from platform
   // configuration or the memory sizing code.
   //
-  AddMemoryRangeHob (0x81000000UL, 0x81000000UL + 0x3F000000UL);
+  AddMemoryRangeHob (0x81000000UL, 0x81000000UL + 0x7000000UL);
 }

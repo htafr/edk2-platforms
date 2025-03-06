@@ -84,7 +84,6 @@ skip_fw_init:
   li    tp, FixedPcdGet32 (PcdScratchRamBase)
   mul   a5, s7, s8
   add   tp, tp, a5
-
   /* Keep a copy of tp */
   add   t3, tp, zero
   /* Counter */
@@ -116,7 +115,7 @@ _scratch_init:
   la    a4, _start_warm
   sd    a4, SBI_SCRATCH_WARMBOOT_ADDR_OFFSET(tp) /* Save warm boot address in scratch buffer*/
   la    a4, platform
-  sd    a4, SBI_SCRATCH_PLATFORM_ADDR_OFFSET(tp) /* Save platfrom table in scratch buffer*/
+  sd    a4, SBI_SCRATCH_PLATFORM_ADDR_OFFSET(tp) /* Save platform table in scratch buffer*/  
   la    a4, _hartid_to_scratch
   sd    a4, SBI_SCRATCH_HARTID_TO_SCRATCH_OFFSET(tp) /* Save _hartid_to_scratch function in scratch buffer*/
   sd    zero, SBI_SCRATCH_TMP0_OFFSET(tp)
@@ -197,7 +196,7 @@ _start_warm:
 
   /*
    * Convert hart ID to scratch buffer
-   * Because the hert ID maybe not in sequentially
+   * Because the hart ID may not be sequential
    */
   beqz  s9, 3f
   li    a4, 0
@@ -220,7 +219,7 @@ _start_warm:
   /* Jump to UninitializedHartWait for the non-bootable harts.
      Be aware that the stack and scratch is not set
      at this moment for this hart even the resource
-     is preserved eariler for it.
+     is preserved earlier for it.
   */
   bltu  s6, s7, 4f
   csrr  a0, CSR_MHARTID
@@ -569,9 +568,9 @@ _reset_regs:
   .global fw_next_addr
 fw_next_addr:
   /* We return next address in 'a0' */
-   la   a0, _jump_addr
-   ld   a0, (a0)
-   ret
+  la   a0, _jump_addr
+  ld   a0, (a0)
+  ret
 
   .align 3
   .section .entry, "ax", %progbits

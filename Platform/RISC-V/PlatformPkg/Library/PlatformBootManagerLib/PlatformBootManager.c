@@ -14,6 +14,31 @@ EFI_GUID  mUefiShellFileGuid = {
   0x7C04A583, 0x9E3E, 0x4f1c, { 0xAD, 0x65, 0xE0, 0x52, 0x68, 0xD0, 0xB4, 0xD1 }
 };
 
+STATIC PLATFORM_USB_KEYBOARD  mUsbKeyboard = {
+  //
+  // USB_CLASS_DEVICE_PATH Keyboard
+  //
+  {
+    {
+      MESSAGING_DEVICE_PATH, MSG_USB_CLASS_DP,
+      DP_NODE_LEN (USB_CLASS_DEVICE_PATH)
+    },
+    0xFFFF, // VendorId: any
+    0xFFFF, // ProductId: any
+    3,      // DeviceClass: HID
+    1,      // DeviceSubClass: boot
+    1       // DeviceProtocol: keyboard
+  },
+
+  //
+  // EFI_DEVICE_PATH_PROTOCOL End
+  //
+  {
+    END_DEVICE_PATH_TYPE, END_ENTIRE_DEVICE_PATH_SUBTYPE,
+    DP_NODE_LEN (EFI_DEVICE_PATH_PROTOCOL)
+  }
+};
+
 /**
   Perform the platform diagnostic, such like test memory. OEM/IBV also
   can customize this function to support specific platform diagnostic.
@@ -168,6 +193,15 @@ PlatformBootManagerBeforeConsole (
   // Signal EndOfDxe PI Event
   //
   EfiEventGroupSignal (&gEfiEndOfDxeEventGroupGuid);
+
+  //
+  // Add the hardcoded short-form USB keyboard device path to ConIn.
+  //
+  EfiBootManagerUpdateConsoleVariable (
+    ConIn,
+    (EFI_DEVICE_PATH_PROTOCOL *)&mUsbKeyboard,
+    NULL
+    );
 
   //
   // Update the console variables.

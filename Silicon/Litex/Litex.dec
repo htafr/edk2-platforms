@@ -1,0 +1,33 @@
+## @file
+#  SiFive silicon package definitions
+#
+#  Copyright (c) 2019, Hewlett Packard Enterprise Development LP. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x0001001b
+  PACKAGE_NAME                   = LitexSiliconPkg
+  PACKAGE_GUID                   = 2EB30DD7-7DAD-48C0-97F5-A02FFB72C778
+  PACKAGE_VERSION                = 1.0
+
+[Includes]
+  Include                        # Root include for the package
+
+[LibraryClasses]
+
+[Guids]
+  gEfiLitexSiliconTokenSpaceGuid  = { 0x6D0C8DD, 0x3043, 0x6451, { 0xAA, 0xF5, 0x8D, 0xEA, 0xD2, 0xAF, 0x5C, 0xEA }}
+
+[Protocols]
+
+[PcdsFixedAtBuild]
+  # Rocket Core GUID
+  gEfiLitexSiliconTokenSpaceGuid.PcdLitexRocketCoreGuid |{ 0x03, 0xA4, 0x9E, 0xC1, 0xDB, 0xA0, 0xB4, 0x61, 0x68, 0x68, 0xEC, 0x38, 0x73, 0xD7, 0xD3, 0x0E }|VOID*|0x00001000
+
+[PcdsDynamic, PcdsDynamicEx]
+
+[PcdsFeatureFlag]
+

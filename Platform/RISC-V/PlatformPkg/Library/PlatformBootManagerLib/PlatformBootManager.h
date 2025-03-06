@@ -31,6 +31,9 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Library/DevicePathLib.h>
 #include <Library/HiiLib.h>
 #include <Library/PrintLib.h>
+#include <Guid/TtyTerm.h>
+
+#define DP_NODE_LEN(Type)  { (UINT8)sizeof (Type), (UINT8)(sizeof (Type) >> 8) }
 
 typedef struct {
   EFI_DEVICE_PATH_PROTOCOL    *DevicePath;
@@ -47,12 +50,21 @@ extern PLATFORM_CONSOLE_CONNECT_ENTRY  gPlatformConsole[];
 #define EFI_SERIAL_DXE_GUID \
   { 0xD3987D4B, 0x971A, 0x435F, { 0x8C, 0xAF, 0x49, 0x67, 0xEB, 0x62, 0x72, 0x41 } }
 
+#pragma pack (1)
 typedef struct {
   VENDOR_DEVICE_PATH          Guid;
   UART_DEVICE_PATH            Uart;
   VENDOR_DEVICE_PATH          TerminalType;
   EFI_DEVICE_PATH_PROTOCOL    End;
 } SERIAL_CONSOLE_DEVICE_PATH;
+#pragma pack ()
+
+#pragma pack (1)
+typedef struct {
+  USB_CLASS_DEVICE_PATH       Keyboard;
+  EFI_DEVICE_PATH_PROTOCOL    End;
+} PLATFORM_USB_KEYBOARD;
+#pragma pack ()
 
 /**
   Use SystemTable Conout to turn on video based Simple Text Out consoles. The
