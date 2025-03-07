@@ -89,7 +89,7 @@ SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdTemporaryRamSize = 0xF000
 
 
 SET gUefiRiscVPkgTokenSpaceGuid.PcdRiscVMachineTimerFrequencyInHerz        = 1000000
-SET gUefiRiscVPlatformLitexPkgTokenSpaceGuid.PcdRocketPlatformSystemClock  = 75000000   # 50 MHz system clock
+SET gUefiRiscVPlatformLitexPkgTokenSpaceGuid.PcdRocketPlatformSystemClock  = 75000000   # 75 MHz system clock
 SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootHartId                      = 0          # Boot hart ID
 
 #
@@ -101,7 +101,5 @@ SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootableHartNumber          = 0
 #
 SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootableHartIndexToId      = {0x1}       # During boot
 SET gUefiRiscVPlatformLitexPkgTokenSpaceGuid.PcdNumberofRocketCores   = 1           # Total U5 cores enabled on Litex Rocket platform
-SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdNumberofU5Cores      = 2           # Still need this because of SMBIOS type 4 in CoreHobInfo.c
-SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdE5MCSupported        = False       # E51 MC exists.
 SET gUefiRiscVPlatformLitexPkgTokenSpaceGuid.PcdRocketUartBase        = 0x12005000  # Serial port base address
 SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdPeiCorePrivilegeMode       = 0           # Set PeiCore to S-Mode

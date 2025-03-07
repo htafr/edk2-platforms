@@ -488,7 +488,7 @@ PeiCore (
   // Scratch->next_arg1 is the device tree.
   //
   Scratch->next_addr = (UINTN)(PeiCoreEntryPoint);
-  Scratch->next_mode = PRV_S;
+  Scratch->next_mode = PRV_M;
   DEBUG ((DEBUG_INFO, "%a: Initializing OpenSBI library for booting hart %d\n", __func__, BootHartId));
   sbi_init (Scratch);
 }
